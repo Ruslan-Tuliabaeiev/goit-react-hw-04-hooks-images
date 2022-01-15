@@ -20,5 +20,5 @@ export const Button = ({nextPage, children, loading}) => {
 Button.propTypes = {
     nextPage: PropTypes.func.isRequired,
     loading: PropTypes.bool.isRequired,
-    children: PropTypes.node.isRequired,
+    // children: PropTypes.node.isRequired,
 }

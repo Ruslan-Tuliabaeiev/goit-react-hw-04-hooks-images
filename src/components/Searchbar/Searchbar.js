@@ -1,30 +1,27 @@
-import  { Component } from 'react';
+import  { useState } from 'react';
 import style from '../style.module.css';
 
-export  class Searchbar extends Component {
-state = {
-  serchFoto:  '',
-}
+export function Searchbar({onSubmit}) {
+const [serchFoto, setSerchFoto] = useState('')
 
-   handleNameChange = event => {
-     this.setState({ serchFoto: event.currentTarget.value.toLowerCase() })
-   }
-
-   handleSubmit = event => {
+ const  handleSubmit = event => {
      event.preventDefault();     
-if(this.state.serchFoto.trim() === ''){
+if(serchFoto.trim() === ''){
   alert('Введите название поиска')
   return;
 }
-     this.props.onSubmit(this.state.serchFoto);
-     this.setState({ serchFoto: ''})
+     onSubmit(serchFoto);
+     setSerchFoto('')
+   }
+   const handleNameChange = event => {
+    setSerchFoto(event.currentTarget.value.toLowerCase() )
    }
 
-render() {
+
   return (
 
 <header className={style.Searchbar} >
-  <form className={style.SearchForm}  onSubmit={this.handleSubmit}>
+  <form className={style.SearchForm}  onSubmit={handleSubmit}>
     <button className={style.SearchFormbutton} type="submit" >
       <span className={style.SearchFormbuttonlabel} >Search</span> 
     </button>
@@ -36,8 +33,8 @@ render() {
       autoFocus
       placeholder="Search images and photos" 
       name="serchFoto"
-      value={this.state.serchFoto}
-      onChange={this.handleNameChange}
+      value={serchFoto}
+      onChange={handleNameChange}
 
     />
   </form>
@@ -45,8 +42,62 @@ render() {
 )
 }
 
-    //className={style.SearchFormbutton}
-}
+  
 
-export default Searchbar;
+
+
+
+
+
+
+
+
+// export  class Searchbar extends Component {
+// state = {
+//   serchFoto:  '',
+// }
+
+//    handleNameChange = event => {
+//      this.setState({ serchFoto: event.currentTarget.value.toLowerCase() })
+//    }
+
+//    handleSubmit = event => {
+//      event.preventDefault();     
+// if(this.state.serchFoto.trim() === ''){
+//   alert('Введите название поиска')
+//   return;
+// }
+//      this.props.onSubmit(this.state.serchFoto);
+//      this.setState({ serchFoto: ''})
+//    }
+
+// render() {
+//   return (
+
+// <header className={style.Searchbar} >
+//   <form className={style.SearchForm}  onSubmit={this.handleSubmit}>
+//     <button className={style.SearchFormbutton} type="submit" >
+//       <span className={style.SearchFormbuttonlabel} >Search</span> 
+//     </button>
+
+//     <input className={style.SearchForminput}
+//       // class="input"
+//       type="text"
+//       autoComplete="off"
+//       autoFocus
+//       placeholder="Search images and photos" 
+//       name="serchFoto"
+//       value={this.state.serchFoto}
+//       onChange={this.handleNameChange}
+
+//     />
+//   </form>
+// </header>
+// )
+// }
+
+//     //className={style.SearchFormbutton}
+// }
+
+// export default Searchbar;
 
